@@ -16,17 +16,12 @@ import org.apache.http.util.EntityUtils;
  */
 public class HttpClient {
 
-    private String TAG = HttpClient.class.getSimpleName();
     public static final int HTTP_OK = 200;
     public static final String CONTACT_URL = "https://s3-us-west-2.amazonaws.com/confide-media/interview/employees.json";
     private String url;
 
     public Employees getEmployees() {
-
-        Log.v(TAG,"getEmployees");
-
         String result = query(CONTACT_URL);
-        Log.v(TAG,"getEmployees result " + result);
         if (result == null) {
             return null;
         }
@@ -50,10 +45,10 @@ public class HttpClient {
 
             if (httpResponse.getStatusLine().getStatusCode() == HTTP_OK) {
                 responseString = EntityUtils.toString(entity);
-                Log.v(TAG,"response " + responseString);
             }
         } catch (Exception e) {
-            e.printStackTrace();;
+            e.printStackTrace();
+            ;
         }
 
         return responseString;

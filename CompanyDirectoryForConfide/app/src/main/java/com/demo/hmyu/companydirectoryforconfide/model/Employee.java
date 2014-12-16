@@ -38,6 +38,9 @@ public class Employee {
    
 
     public String getFirst_name() {
+        if(first_name==null){
+            first_name = "";
+        }
         return first_name;
     }
 
@@ -46,6 +49,9 @@ public class Employee {
     }
 
     public String getLast_name() {
+        if(last_name==null){
+            last_name = "";
+        }
         return last_name;
     }
 
@@ -65,7 +71,7 @@ public class Employee {
         return emails;
     }
 
-    public void setEmails(Emails emails) {
+    protected void setEmails(Emails emails) {
         this.emails = emails;
     }
 
