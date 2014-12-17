@@ -16,31 +16,39 @@ public class Employee {
 //        "first_name": "Anne",
 //            "last_name": "Carr",
 //            "title": "Product Infrastructure Associate",
-//            "emails": {
-//        "work": "acarr0@bloomberg.com",
+//        "emails": {
+//                "work": "acarr0@bloomberg.com",
 //                "personal": "acarr0@berkeley.edu"
 //    },
 //        "website": "http://www.mockaroo.com/schemas/7061",
-//            "social": {
-//        "twitter": "@so",
+//        "social": {
+//                "twitter": "@so",
 //                "facebook": null
 //    },
 //        "birthday": null,
 //            "photo_url": "https://s3.amazonaws.com/uifaces/faces/twitter/michaelcomiskey/128.jpg",
-//            "phones": {
-//        "work": "180-137-3989",
+//        "phones": {
+//                "work": "180-137-3989",
 //                "personal": null
 //    }
 //    },
 
     private String first_name;
+
     private String last_name;
+
     private String title;
+
     private Emails emails;
+
     private String website;
+
     private Social social;
+
     private String birthday;
+
     private String photo_url;
+
     private Phones phones;
 
 
@@ -127,6 +135,7 @@ public class Employee {
     }
 
     public static class Emails {
+
         public String getWork() {
             return work;
         }
@@ -144,11 +153,13 @@ public class Employee {
         }
 
         private String work;
+
         private String personal;
 
     }
 
     public static class Social {
+
         public String getTwitter() {
             return twitter;
         }
@@ -166,10 +177,12 @@ public class Employee {
         }
 
         private String twitter;
+
         private String facebook;
     }
 
     public static class Phones {
+
         public String getWork() {
             return work;
         }
@@ -187,11 +200,12 @@ public class Employee {
         }
 
         private String work;
+
         private String personal;
     }
 
-    public static Employee parse(String result){
-        if(result == null){
+    public static Employee parse(String result) {
+        if (result == null) {
             return null;
         }
         ObjectMapper objectMapper = new ObjectMapper();
