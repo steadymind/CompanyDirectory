@@ -23,19 +23,20 @@ import com.demo.hmyu.companydirectoryforconfide.model.Employees;
  * Large screen devices (such as tablets) are supported by replacing the ListView
  * with a GridView.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link com.demo.hmyu.companydirectoryforconfide.fragments.ContactListFragment.onContactListFragmentListener}
  * interface.
  */
 public class ContactListFragment extends Fragment implements AbsListView.OnItemClickListener {
 
 
-    private OnFragmentInteractionListener mListener;
+    private onContactListFragmentListener mListener;
     private String TAG = this.getClass().getSimpleName();
 
     /**
      * The fragment's ListView/GridView.
      */
     private AbsListView mListView;
+    private Employees mEmployees;
 
     // TODO: Rename and change types of parameters
     public static ContactListFragment newInstance() {
@@ -78,7 +79,7 @@ public class ContactListFragment extends Fragment implements AbsListView.OnItemC
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (onContactListFragmentListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -95,9 +96,9 @@ public class ContactListFragment extends Fragment implements AbsListView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-           Log.v(TAG,"click " + position);
+           String employeeString = mEmployees.employees.get(position).toString();
+           Log.v(TAG,"onItemclick " + employeeString);
+           mListener.onEmployeeClick(employeeString);
         }
     }
 
@@ -135,9 +136,9 @@ public class ContactListFragment extends Fragment implements AbsListView.OnItemC
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface onContactListFragmentListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+        public void onEmployeeClick(String id);
     }
 
     private class GetContactTask extends AsyncTask<String, String, Employees> {
@@ -153,6 +154,7 @@ public class ContactListFragment extends Fragment implements AbsListView.OnItemC
             super.onPostExecute(employees);
 
             if (employees != null) {
+                mEmployees = employees;
                 showContacts(employees);
             }
         }

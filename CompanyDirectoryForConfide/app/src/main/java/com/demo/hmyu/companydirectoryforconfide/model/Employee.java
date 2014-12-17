@@ -1,5 +1,12 @@
 package com.demo.hmyu.companydirectoryforconfide.model;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import java.io.IOException;
+
 /**
  * Created by Hsiang-Min on 12/15/14.
  */
@@ -35,10 +42,10 @@ public class Employee {
     private String birthday;
     private String photo_url;
     private Phones phones;
-   
+
 
     public String getFirst_name() {
-        if(first_name==null){
+        if (first_name == null) {
             first_name = "";
         }
         return first_name;
@@ -49,7 +56,7 @@ public class Employee {
     }
 
     public String getLast_name() {
-        if(last_name==null){
+        if (last_name == null) {
             last_name = "";
         }
         return last_name;
@@ -181,6 +188,36 @@ public class Employee {
 
         private String work;
         private String personal;
+    }
+
+    public static Employee parse(String result){
+        if(result == null){
+            return null;
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            return objectMapper.readValue(result, Employee.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = null;
+        try {
+            json = ow.writeValueAsString(this);
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
 }

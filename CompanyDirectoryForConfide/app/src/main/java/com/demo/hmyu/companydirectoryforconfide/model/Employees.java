@@ -1,6 +1,9 @@
 package com.demo.hmyu.companydirectoryforconfide.model;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +17,6 @@ public class Employees {
 
 
     public static Employees parse(String result){
-
         if(result == null){
             return null;
         }
@@ -27,7 +29,4 @@ public class Employees {
             return null;
         }
     }
-
-
-
 }

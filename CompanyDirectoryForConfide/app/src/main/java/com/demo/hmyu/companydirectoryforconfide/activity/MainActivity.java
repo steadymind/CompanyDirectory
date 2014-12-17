@@ -1,15 +1,19 @@
 package com.demo.hmyu.companydirectoryforconfide.activity;
 
+import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.demo.hmyu.companydirectoryforconfide.R;
+import com.demo.hmyu.companydirectoryforconfide.fragments.ContactDetailFragment;
 import com.demo.hmyu.companydirectoryforconfide.fragments.ContactListFragment;
 
 
-public class MainActivity extends ActionBarActivity implements ContactListFragment.OnFragmentInteractionListener {
+public class MainActivity extends ActionBarActivity implements ContactListFragment.onContactListFragmentListener, ContactDetailFragment.onContactDetailListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +25,6 @@ public class MainActivity extends ActionBarActivity implements ContactListFragme
             ContactListFragment f = ContactListFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, f)
-
-
                     .commit();
         }
     }
@@ -30,19 +32,14 @@ public class MainActivity extends ActionBarActivity implements ContactListFragme
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_contact_list, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -51,7 +48,17 @@ public class MainActivity extends ActionBarActivity implements ContactListFragme
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
+    public void onEmployeeClick(String employSring) {
+        ContactDetailFragment f = ContactDetailFragment.newInstance(employSring);
+        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        String tag = String.valueOf(f.hashCode());
+        ft.addToBackStack(tag);
+        ft.add(R.id.container, f).commit();
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
