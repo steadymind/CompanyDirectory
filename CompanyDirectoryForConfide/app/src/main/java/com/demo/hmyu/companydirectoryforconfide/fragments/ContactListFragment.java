@@ -12,6 +12,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class ContactListFragment extends Fragment
     private Employees mEmployees;
 
     private ContactAdapter mAdapter;
+
 
     public static ContactListFragment newInstance() {
         ContactListFragment fragment = new ContactListFragment();
@@ -100,22 +103,24 @@ public class ContactListFragment extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_search, menu);
 
-//        MenuItem item = menu.add("Search");
-//        item.setIcon(android.R.drawable.ic_menu_search);
-//        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-//        SearchView sv = new SearchView(getActivity());
+        MenuItem item = menu.add("Search");
+        item.setIcon(R.drawable.ic_action_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        SearchView sv = new SearchView(getActivity());
 
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        SearchView sv = (SearchView) menu.findItem(R.id.search).getActionView();
-
-        sv.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        int id = sv.getContext().getResources()
+                .getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) sv.findViewById(id);
+        textView.setHint("Search Contact");
+        textView.setHintTextColor(getResources().getColor(android.R.color.darker_gray));
+        textView.setTextColor(getResources().getColor(R.color.white));
 
         SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextChange(String newText) {
-                // this is your adapter that will be filtered
-                mAdapter.getFilter().filter(newText);
-                Log.v(TAG, "on text chnge text: " + newText);
+//                // this is your adapter that will be filtered
+//                mAdapter.getFilter().filter(newText);
+//                Log.v(TAG, "on text chnge text: " + newText);
                 return true;
             }
 
@@ -128,8 +133,7 @@ public class ContactListFragment extends Fragment
             }
         };
         sv.setOnQueryTextListener(textChangeListener);
-        super.onCreateOptionsMenu(menu, inflater);
-//        item.setActionView(sv);
+        item.setActionView(sv);
     }
 
 

@@ -80,8 +80,13 @@ public class ContactAdapter extends BaseAdapter implements Filterable {
         viewHolder = (ContactViewHolder) view.getTag();
 
         if (employee != null && viewHolder != null) {
-            viewHolder.firstName.setText(employee.getFirst_name());
-            viewHolder.lastName.setText(employee.getLast_name());
+
+            String firstName =  (employee.getFirst_name() != null? employee.getFirst_name() : "");
+            String lastName =  (employee.getLast_name() != null? employee.getLast_name() : "");
+
+            viewHolder.name.setText(
+                    String.format(mContext.getResources().getString(R.string.detail_name),
+                            firstName, lastName));
             viewHolder.title.setText(employee.getTitle());
             if (employee.getEmails() != null) {
                 viewHolder.email.setText(employee.getEmails().getWork());
@@ -183,9 +188,7 @@ public class ContactAdapter extends BaseAdapter implements Filterable {
 
         public ImageView img;
 
-        public TextView firstName;
-
-        public TextView lastName;
+        public TextView name;
 
         public TextView title;
 
@@ -195,8 +198,7 @@ public class ContactAdapter extends BaseAdapter implements Filterable {
 
         public ContactViewHolder(View view) {
             img = (ImageView) view.findViewById(R.id.img_photo);
-            firstName = (TextView) view.findViewById(R.id.txt_firstname);
-            lastName = (TextView) view.findViewById(R.id.txt_lastname);
+            name = (TextView) view.findViewById(R.id.txt_name);
             title = (TextView) view.findViewById(R.id.txt_title);
             phone = (TextView) view.findViewById(R.id.txt_phone);
             email = (TextView) view.findViewById(R.id.txt_email);
