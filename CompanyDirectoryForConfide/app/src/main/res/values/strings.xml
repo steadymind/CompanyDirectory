@@ -9,11 +9,10 @@
 
     <string name="phone">Phone</string>
     <string name="email">Email</string>
-    <string name="website">Website</string>
+    <string name="more">More</string>
     <string name="work">(Work)</string>
     <string name="personal">(Personal)</string>
-
-
-
+    <string name="website">Website</string>
+    <string name="bday">Birthday</string>
 
 </resources>

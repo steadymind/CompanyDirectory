@@ -20,13 +20,14 @@ import java.util.List;
 public class ContactAdapter extends BaseAdapter {
 
     private List<Employee> mEmployeeList;
+
     private LayoutInflater mInflater = null;
+
     private Context mContext;
 
     public ContactAdapter(Context context, List<Employee> employeeList) {
         mContext = context;
         mEmployeeList = employeeList;
-        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -53,7 +54,8 @@ public class ContactAdapter extends BaseAdapter {
         Employee employee = mEmployeeList.get(position);
 
         if (view == null) {
-            view = mInflater.inflate(R.layout.listitem_person, null);
+
+            view = LayoutInflater.from(mContext).inflate(R.layout.listitem_person, null);
             viewHolder = new ContactViewHolder(view);
             view.setTag(viewHolder);
         }
@@ -67,19 +69,25 @@ public class ContactAdapter extends BaseAdapter {
             viewHolder.email.setText(employee.getEmails().getWork());
             viewHolder.phone.setText(employee.getPhones().getWork());
 
-            Picasso.with(mContext).load(employee.getPhoto_url()).fit().centerCrop().into(viewHolder.img);
-                    //.transform(new CircleTransformation())
+            Picasso.with(mContext).load(employee.getPhoto_url()).fit().centerCrop()
+                    .into(viewHolder.img);
+            //.transform(new CircleTransformation())
         }
-
         return view;
     }
 
     private class ContactViewHolder {
+
         public ImageView img;
+
         public TextView firstName;
+
         public TextView lastName;
+
         public TextView title;
+
         public TextView phone;
+
         public TextView email;
 
         public ContactViewHolder(View view) {
@@ -89,7 +97,6 @@ public class ContactAdapter extends BaseAdapter {
             title = (TextView) view.findViewById(R.id.txt_title);
             phone = (TextView) view.findViewById(R.id.txt_phone);
             email = (TextView) view.findViewById(R.id.txt_email);
-
         }
     }
 

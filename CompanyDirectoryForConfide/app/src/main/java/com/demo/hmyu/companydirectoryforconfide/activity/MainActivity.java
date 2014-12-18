@@ -1,19 +1,16 @@
 package com.demo.hmyu.companydirectoryforconfide.activity;
 
-import android.app.FragmentTransaction;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import com.demo.hmyu.companydirectoryforconfide.R;
 import com.demo.hmyu.companydirectoryforconfide.fragments.ContactDetailFragment;
 import com.demo.hmyu.companydirectoryforconfide.fragments.ContactListFragment;
 
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
-public class MainActivity extends ActionBarActivity implements ContactListFragment.onContactListFragmentListener, ContactDetailFragment.onContactDetailListener {
+
+public class MainActivity extends ActionBarActivity implements ContactListFragment.onContactListFragmentListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +47,16 @@ public class MainActivity extends ActionBarActivity implements ContactListFragme
     @Override
     public void onEmployeeClick(String employSring) {
         ContactDetailFragment f = ContactDetailFragment.newInstance(employSring);
-        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
+                .beginTransaction();
         String tag = String.valueOf(f.hashCode());
         ft.addToBackStack(tag);
         ft.add(R.id.container, f).commit();
 
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
+//    @Override
+//    public void onFragmentInteraction(Uri uri) {
+//
+//    }
 }

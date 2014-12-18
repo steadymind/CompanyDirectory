@@ -25,7 +25,7 @@ public class Employee {
 //                "twitter": "@so",
 //                "facebook": null
 //    },
-//        "birthday": null,
+//        "birthday": "1965-07-17",
 //            "photo_url": "https://s3.amazonaws.com/uifaces/faces/twitter/michaelcomiskey/128.jpg",
 //        "phones": {
 //                "work": "180-137-3989",
