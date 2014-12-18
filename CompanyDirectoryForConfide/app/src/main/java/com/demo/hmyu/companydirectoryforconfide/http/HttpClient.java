@@ -12,12 +12,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 /**
- * Created by Hsiang-Min on 12/15/14.
+ * Created by Hsiang-Min on 12/16/14.
  */
 public class HttpClient {
 
     public static final int HTTP_OK = 200;
+
     public static final String CONTACT_URL = "https://s3-us-west-2.amazonaws.com/confide-media/interview/employees.json";
+
     private String url;
 
     public Employees getEmployees() {

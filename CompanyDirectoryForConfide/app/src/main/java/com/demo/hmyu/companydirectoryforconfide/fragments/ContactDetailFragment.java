@@ -2,7 +2,7 @@ package com.demo.hmyu.companydirectoryforconfide.fragments;
 
 import com.demo.hmyu.companydirectoryforconfide.R;
 import com.demo.hmyu.companydirectoryforconfide.model.Employee;
-import com.demo.hmyu.companydirectoryforconfide.ui.CircleTransformation;
+import com.demo.hmyu.companydirectoryforconfide.ui.RoundedTransformation;
 import com.demo.hmyu.companydirectoryforconfide.ui.InfoCategoryView;
 import com.demo.hmyu.companydirectoryforconfide.ui.InfoItemView;
 import com.squareup.picasso.Picasso;
@@ -27,6 +27,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+/**
+ * Created by Hsiang-Min on 12/16/14.
+ */
 public class ContactDetailFragment extends Fragment
         implements View.OnClickListener, InfoItemView.OnInfoItemViewListener {
 
@@ -81,7 +84,7 @@ public class ContactDetailFragment extends Fragment
             txtName.setText(String.format(getResources().getString(R.string.detail_name),
                     mEmployee.getFirst_name(), mEmployee.getLast_name()));
             Picasso.with(getActivity()).load(mEmployee.getPhoto_url()).fit().centerCrop()
-                    .transform(new CircleTransformation()).into(mImgPhoto);
+                    .transform(new RoundedTransformation()).into(mImgPhoto);
 
             if (mEmployee.getTitle() != null) {
                 txtTitle.setText(mEmployee.getTitle());

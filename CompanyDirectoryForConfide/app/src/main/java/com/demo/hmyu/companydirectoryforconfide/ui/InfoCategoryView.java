@@ -1,10 +1,8 @@
 package com.demo.hmyu.companydirectoryforconfide.ui;
 
 import com.demo.hmyu.companydirectoryforconfide.R;
-import com.demo.hmyu.companydirectoryforconfide.model.Employee;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;

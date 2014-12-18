@@ -13,5 +13,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/orange"
+            android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 </LinearLayout>

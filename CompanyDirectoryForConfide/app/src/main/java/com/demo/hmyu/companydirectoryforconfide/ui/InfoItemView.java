@@ -3,7 +3,6 @@ package com.demo.hmyu.companydirectoryforconfide.ui;
 import com.demo.hmyu.companydirectoryforconfide.R;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
